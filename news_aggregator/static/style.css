@@ -1,0 +1,118 @@
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #f8f9fa;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background: #1e88e5;
+  color: white;
+  padding: 15px;
+  text-align: center;
+}
+
+header input {
+  padding: 8px;
+  width: 250px;
+  border: none;
+  border-radius: 5px;
+}
+
+header button {
+  padding: 8px 15px;
+  background-color: #1565c0;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+header button:hover {
+  background-color: #0d47a1;
+}
+
+#newsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 15px;
+  padding: 20px;
+}
+
+.news-card {
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.news-card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.news-card h3 {
+  margin: 10px 0 5px;
+}
+
+.news-card a {
+  color: #1e88e5;
+  text-decoration: none;
+}
+
+footer {
+  background: #1e88e5;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+
+.chart-container {
+  width: 500px;
+  margin: 20px auto;
+}
+
+#dashboard h2 {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.news-card img {
+  width: 100%;
+  height: auto;
+}
+
+/* ================================
+   CHART SECTION STYLING
+================================ */
+#charts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin: 40px auto;
+  padding: 20px;
+  max-width: 1200px;
+  background: #f9f9f9;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+#charts canvas {
+  background: #fff;
+  border-radius: 12px;
+  padding: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Optional: Chart titles for clarity */
+#charts::before {
+  content: "📊 News Insights Dashboard";
+  display: block;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+

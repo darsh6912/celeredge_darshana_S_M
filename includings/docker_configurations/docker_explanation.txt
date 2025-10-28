@@ -1,0 +1,104 @@
+Docker Configuration
+
+Docker is used to containerize the entire News Aggregator system — ensuring easy setup, consistent environments, and smooth deployment.
+
+Files Included
+
+Dockerfile
+This file defines how the backend (FastAPI application) is built and run inside a container.
+
+Dockerfile content:
+
+# Use official Python image
+FROM python:3.10-slim
+
+# Set working directory
+WORKDIR /app
+
+# Copy all project files into the container
+COPY . /app
+
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Expose FastAPI default port
+EXPOSE 8000
+
+# Run FastAPI app using Uvicorn
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+
+
+Explanation:
+
+Uses a lightweight Python base image.
+
+Installs all required dependencies listed in requirements.txt.
+
+Runs the FastAPI app automatically when the container starts.
+
+docker-compose.yml
+Used to orchestrate multiple services if required (like backend, database, or frontend).
+
+version: '3.9'
+
+services:
+  backend:
+    build: .
+    container_name: news_backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    environment:
+      - API_KEY=your_news_api_key_here
+
+  frontend:
+    image: nginx:alpine
+    container_name: news_frontend
+    ports:
+      - "5500:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+
+
+Explanation:
+
+Backend: Builds and runs the FastAPI backend service.
+
+Frontend: Serves static HTML, CSS, and JS files using Nginx.
+
+Ports:
+
+8000 → Backend API (http://127.0.0.1:8000
+)
+
+5500 → Frontend UI (http://127.0.0.1:5500
+)
+
+The volume mapping ensures real-time code changes reflect inside the container.
+
+How to Run with Docker
+
+Build and Run Containers:
+docker-compose up --build
+
+Access the Application:
+Backend → http://127.0.0.1:8000
+
+Frontend → http://127.0.0.1:5500
+
+Stop the Containers:
+docker-compose down
+
+Rebuild (if code changes):
+docker-compose up --build
+
+Benefits of Using Docker
+
+Consistency: Same environment across all systems.
+
+Isolation: Backend and frontend run independently in their own containers.
+
+Portability: Can deploy anywhere with Docker installed.
+
+Ease of Use: Single command setup via docker-compose.
