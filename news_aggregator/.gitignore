@@ -1,0 +1,7 @@
+# Ignore big and local files
+*.mp4
+*.avi
+*.mov
+*.db
+includings/video_recording/
+includings/screenshots/
