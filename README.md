@@ -29,6 +29,10 @@ It integrates **Natural Language Processing (NLP)** for **sentiment analysis** a
 - **Docker Compose** – Defines and manages multiple containers and services in a single configuration.
 
 ---
+## 🧭 Project Architecture
+
+![News Aggregator Architecture](includings/docker_configurations/news_Aggre_archi.png)
+
 
 ## 🧩 Implementation Details
 
