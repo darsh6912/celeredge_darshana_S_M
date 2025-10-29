@@ -1,37 +1,70 @@
-# 📰 CelerEdge News Aggregator and Insights Platform
+# 🧠 News Aggregator System
 
-This project is a **FastAPI + JavaScript** based system that aggregates news articles, performs **sentiment analysis**, identifies **top topics**, and compares **news sources**.  
-It also includes a **frontend dashboard** visualizing insights using **Chart.js**.
+## 📝 Project Overview
+
+The **News Aggregator System** is a **FastAPI-based web application** that automatically fetches, analyzes, and visualizes trending news data from **NewsAPI.org**.  
+It integrates **Natural Language Processing (NLP)** for **sentiment analysis** and **keyword extraction**, providing users with meaningful insights through **interactive Chart.js visualizations** on the frontend.
+
+---
+
+## ⚙️ Tech Stack
+
+### 🔹 Backend
+
+- **FastAPI** – Lightweight, asynchronous Python web framework for building RESTful APIs.  
+- **SQLAlchemy** – ORM (Object Relational Mapper) for database management.  
+- **SQLite** – Local relational database used to store fetched articles.  
+- **NLTK (VADER)** – NLP library for sentiment scoring and polarity classification.  
+- **Scikit-learn (TF-IDF)** – Used for keyword extraction from text data.  
+- **Uvicorn** – ASGI server used to serve the FastAPI app efficiently.
+
+### 🔹 Frontend
+
+- **HTML, CSS, JavaScript** – For building the user interface and enabling interactivity.  
+- **Chart.js (CDN)** – Used for creating dynamic visualizations of sentiment, topic, and source analytics.
+
+### 🔹 Deployment / Containerization
+
+- **Docker** – Packages the backend application and its dependencies into a portable container.  
+- **Docker Compose** – Defines and manages multiple containers and services in a single configuration.
 
 ---
 
-## 🏗️ Architecture Overview
+## 🧩 Implementation Details
 
-### Components
+### 📰 News Fetching
 
-1. **Backend (FastAPI)**  
-   - Fetches latest or searched news articles using APIs (like NewsAPI).  
-   - Analyzes sentiments using VADER sentiment analyzer.  
-   - Extracts key topics and source statistics.  
-   - Exposes REST endpoints consumed by the frontend.
+- Fetches **live news articles** from **NewsAPI.org** using the `requests` library.  
+- Implements **fallback mock data** to ensure reliability if API limits are reached or an error occurs.
 
-2. **Frontend (HTML + CSS + JS)**  
-   - Simple dashboard interface.  
-   - Displays fetched articles dynamically.  
-   - Uses **Chart.js** to visualize:
-     - Sentiment distribution  
-     - Top topics  
-     - Source comparison  
+### 💬 Sentiment Analysis
 
-3. **Database (SQLite via SQLAlchemy)**  
-   - Stores fetched articles for caching and faster access.  
-   - Ensures data persistence across sessions.
+- Utilizes **NLTK’s VADER model** for sentiment polarity scoring.  
+- Classifies articles into **Positive**, **Negative**, or **Neutral** categories using compound scores.
 
-4. **Dockerized Deployment**  
-   - Backend and frontend are containerized for consistent setup.  
-   - Uses `docker-compose` for easy orchestration.
+### 🏷️ Keyword Extraction
+
+- Implements **TF-IDF Vectorization** (via Scikit-learn) to extract the most relevant terms.  
+- Highlights **key phrases** representing the core topics in the news batch.
+
+### 💾 Database Management
+
+- Articles, sentiments, and keywords are stored in **SQLite** through **SQLAlchemy models**.  
+- Includes handling for **concurrency issues** by retrying commits when database locks occur.
+
+### 📊 Visualization (Frontend)
+
+- **Chart.js** dynamically updates visual charts in real-time:  
+  - Sentiment Distribution  
+  - Topic Frequency  
+  - Source Breakdown  
+
+### 🔐 CORS Middleware
+
+- Enables **secure communication** between the **FastAPI backend** and the **frontend**, even when hosted on different origins.
 
 ---
+
 
 ## 🔄 Data Flow
 
@@ -49,10 +82,11 @@ User → JS Fetch → FastAPI (Processing + DB) → JSON → Charts + UI
 
 ---
 
+
 ## ⚙️ Setup and Run Instructions
 
 ### 1. Clone the Repository
-```bash
+
 git clone https://github.com/your-username/news-aggregator.git
 cd news-aggregator
 
@@ -120,3 +154,35 @@ Frontend → http://127.0.0.1:5500
 Stop Containers
 
 docker-compose down
+
+## 🚀 Advantages
+
+✅ **Automated Workflow** – Fetches, analyzes, and visualizes news without manual intervention.  
+✅ **Lightweight & Fast** – Combination of FastAPI and Uvicorn ensures high performance.  
+✅ **Interactive Visualization** – Real-time, responsive charts enhance user experience.  
+✅ **Portable via Docker** – Runs identically across development, testing, and production environments.  
+✅ **Reliable Fallbacks** – Operates smoothly even when API requests fail or limits are reached.
+
+---
+
+## ⚡ Efficiency & Usefulness
+
+### 🕒 Time Efficiency
+Automates sentiment and keyword extraction, significantly reducing manual analysis time.
+
+### 📈 Data-Driven Decisions
+Ideal for **journalists**, **analysts**, and **policy researchers** to assess **public mood** or **trending topics** quickly.
+
+### 💻 Low Resource Usage
+The **SQLite + FastAPI** combination ensures low computational cost, making it optimal for lightweight or prototype projects.
+
+### 🔁 Extendability
+Easily scalable to **PostgreSQL**, or integrable with **AI-based summarization** or **topic clustering models** for future enhancements.
+
+---
+
+## 🧩 Summary
+
+> The News Aggregator System combines **data fetching**, **NLP-based analysis**, and **interactive visualization** into a single automated pipeline, delivering a highly efficient, reliable, and insightful platform for real-time news intelligence.
+
+---
